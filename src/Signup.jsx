@@ -34,7 +34,7 @@ const Signup = () => {
     e.preventDefault();
 
     if (!firstName || !lastName || !email || !password) {
-      alert("Please fill out all the fields!");
+      alert("¡Por favor rellene todos los campos!");
       return;
     }
 
@@ -52,21 +52,21 @@ const Signup = () => {
       console.log(user);
 
       if (profileImage) {
-        // Upload the profileImage to Firebase Storage
+        // Subir la imagen del perfil a Firebase
         const storageRef = ref(storage, `profileImages/${user.uid}`);
         const uploadTask = uploadBytesResumable(storageRef, profileImage);
 
         uploadTask.on(
           "state_changed",
           (snapshot) => {
-            // Handle upload progress if needed
+            // Gestionar el progreso de la carga
           },
           (error) => {
-            // Handle upload error if needed
+            // Gestionar errores de carga
             setLoading(false);
           },
           async () => {
-            // On successful upload, get the download URL and update the user's profile with it
+            // Despues de cargar, obtiene la url del perfil
             const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
             await updateProfile(user, {
               displayName: `${firstName} ${lastName}`,
@@ -106,16 +106,16 @@ const Signup = () => {
 
       switch (error.code) {
         case "auth/email-already-in-use":
-          alert("The email address is already in use.");
+          alert("La dirección de correo electrónico ya está en uso.");
           break;
         case "auth/invalid-email":
-          alert("The email address is invalid.");
+          alert("La dirección de correo electrónico no es válida.");
           break;
         case "auth/weak-password":
-          alert("Password should be atleast 6 characters long.");
+          alert("La contraseña debe tener al menos 6 caracteres.");
           break;
         default:
-          alert("Something went wrong, please try again later.");
+          alert("Algo salió mal, por favor inténtalo de nuevo más tarde.");
           break;
       }
     }
@@ -146,20 +146,20 @@ const Signup = () => {
         <Logo />
       </div>
       <div className="w-[400px] bg-white text-slate-700 shadow rounded-lg p-8">
-        <h4 className="text-2xl font-semibold text-center mb-5">SignUp</h4>
+        <h4 className="text-2xl font-semibold text-center mb-5">Registrarse</h4>
         <form>
           <div className="flex mb-3 gap-3">
             <input
               type="text"
               className="w-full border border-slate-300 shadow rounded py-2 px-4"
-              placeholder="First Name"
+              placeholder="Nombre"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             />
             <input
               type="text"
               className="w-full border border-slate-300 shadow rounded py-2 px-4"
-              placeholder="Last Name"
+              placeholder="Apellido"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             />
@@ -167,7 +167,7 @@ const Signup = () => {
           <input
             type="email"
             className="w-full border border-slate-300 shadow rounded py-2 px-4 mb-3"
-            placeholder="Email Address"
+            placeholder="Correo electrónico"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -175,7 +175,7 @@ const Signup = () => {
             <input
               type={passwordVisible ? "text" : "password"}
               className="w-full"
-              placeholder="Password"
+              placeholder="Contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -196,7 +196,7 @@ const Signup = () => {
             for="profile"
             className="cursor-pointer flex items-center gap-3 justify-center mb-3"
           >
-            <p>Profile Image</p>
+            <p>Foto de perfil</p>
             {profileImage ? (
               <Avatar
                 sx={{ width: 50, height: 50 }}
@@ -218,18 +218,18 @@ const Signup = () => {
             onClick={handleSignup}
             className="w-full bg-emerald-500 text-white px-4 py-2 rounded shadow font-semibold"
           >
-            {loading ? "Signing Up..." : "Sign Up"}
+            {loading ? "Registrando..." : "Registrarme"}
           </button>
         </form>
         <p className="mt-3 text-center">
-          Already have an account?{" "}
+          ¿Ya tienes una cuenta?{" "}
           <Link to="/signin" className="text-emerald-500">
-            Signin
+            Acceder
           </Link>
         </p>
         <div className="flex items-center gap-3 my-5">
           <hr className="w-full border-slate-300" />
-          <p>OR</p>
+          <p>O</p>
           <hr className="w-full border-slate-300" />
         </div>
         <button
@@ -237,7 +237,7 @@ const Signup = () => {
           onClick={handleGoogleSignup}
         >
           <GoogleIcon />
-          <span>Continue with Google</span>
+          <span>Continuar con Google</span>
           <span></span>
         </button>
       </div>
