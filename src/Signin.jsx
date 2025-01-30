@@ -27,7 +27,7 @@ const Signin = () => {
     e.preventDefault();
 
     if (!email || !password) {
-      alert("Please fill out all the fields!");
+      alert("¡Por favor rellene todos los campos!");
       return;
     }
 
@@ -44,17 +44,17 @@ const Signin = () => {
       switch (error.code) {
         case "auth/user-not-found":
           alert(
-            "The email address is not associated with any account. Please sign up first."
+            "La dirección de correo electrónico no está asociada a ninguna cuenta. Regístrese primero."
           );
           break;
         case "auth/invalid-email":
-          alert("The email address is invalid.");
+          alert("La dirección de correo electrónico no es válida.");
           break;
         case "auth/wrong-password":
-          alert("Wrong Password!");
+          alert("¡Contraseña incorrecta!");
           break;
         default:
-          alert("Something went wrong, please try again later.");
+          alert("Algo salió mal, por favor inténtalo de nuevo más tarde.");
           break;
       }
     }
@@ -88,12 +88,12 @@ const Signin = () => {
         <Logo />
       </div>
       <div className="w-[400px] bg-white text-slate-700 shadow rounded-lg p-8">
-        <h4 className="text-2xl font-semibold text-center mb-5">Sign In</h4>
+        <h4 className="text-2xl font-semibold text-center mb-5">Iniciar sesión</h4>
         <form>
           <input
             type="email"
             className="w-full border border-slate-300 shadow rounded py-2 px-4 mb-3"
-            placeholder="Email Address"
+            placeholder="Correo electrónico"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -101,7 +101,7 @@ const Signin = () => {
             <input
               type={passwordVisible ? "text" : "password"}
               className="w-full"
-              placeholder="Password"
+              placeholder="Contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -122,18 +122,18 @@ const Signin = () => {
             onClick={handleSignin}
             className="w-full bg-emerald-500 text-white px-4 py-2 rounded shadow font-semibold"
           >
-            {loading ? "Signing In..." : "Sign In"}
+            {loading ? "Iniciando sesión..." : "Iniciar sesión"}
           </button>
         </form>
         <p className="mt-3 text-center">
-          Don't have an account?{" "}
+          ¿No tienes una cuenta?{" "}
           <Link to="/signup" className="text-emerald-500">
-            Signup
+            Registrate
           </Link>
         </p>
         <div className="flex items-center gap-3 my-5">
           <hr className="w-full border-slate-300" />
-          <p>OR</p>
+          <p>O</p>
           <hr className="w-full border-slate-300" />
         </div>
         <button
@@ -141,7 +141,7 @@ const Signin = () => {
           onClick={handleGoogleSignin}
         >
           <GoogleIcon />
-          <span>Continue with Google</span>
+          <span>Continuar con Google</span>
           <span></span>
         </button>
       </div>
